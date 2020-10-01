@@ -31,6 +31,8 @@ namespace IMCTest.API.Controllers
         {
             try
             {
+                //I use header to pass clientId because on client can set an interceptor or something similar
+                //to pass its client id once
                 var clientId = Request.Headers["ClientId"];
                 
                 var _taxCalculatorService = _serviceRsolver(clientId);

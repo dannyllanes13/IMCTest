@@ -39,7 +39,10 @@ namespace IMCTest.API
 
             services.AddTransient<ServiceResolver>(serviceProvider => key =>
             {
+                //here match the clientId with the implementation i have on my appsettings.json
+                //this avoid to republish if a newe client has same existing implementation
                 var implementation = Configuration.GetValue<string>(key);
+
                 switch (implementation)
                 {
                     case "ImplementationA":
