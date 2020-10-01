@@ -14,14 +14,13 @@ using static IMCTest.API.Startup;
 namespace IMCTest.API.Controllers
 {
     [ApiController]
-    public class TaxCalculatorController : ControllerBase
+    public class TaxCalculatorController : CustomBaseController
     {
-        private readonly ILogger<TaxCalculatorController> _logger;
+        
         private readonly ServiceResolver _serviceRsolver;
 
-        public TaxCalculatorController(ILogger<TaxCalculatorController> logger, ServiceResolver serviceAccesor)
+        public TaxCalculatorController(ILogger<TaxCalculatorController> logger, ServiceResolver serviceAccesor): base(logger)
         {
-            _logger = logger;
             _serviceRsolver = serviceAccesor;
         }
 
@@ -33,7 +32,7 @@ namespace IMCTest.API.Controllers
             {
                 //I use header to pass clientId because on client can set an interceptor or something similar
                 //to pass its client id once
-                var clientId = Request.Headers["ClientId"];
+                var clientId = GetClientIdFromHeader(Request);
                 
                 var _taxCalculatorService = _serviceRsolver(clientId);
                 var address = new AddressVM
@@ -63,7 +62,7 @@ namespace IMCTest.API.Controllers
         {
             try
             {
-                var clientId = Request.Headers["ClientId"];
+                var clientId = GetClientIdFromHeader(Request);
                 var _taxCalculatorService = _serviceRsolver(clientId);
 
                 var tax = await _taxCalculatorService.GetTaxForOrder(order);
