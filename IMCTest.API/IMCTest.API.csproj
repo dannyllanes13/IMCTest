@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="4.1.458" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IMCTest.Service\IMCTest.Service.csproj" />
+    <ProjectReference Include="..\IMCTest.ViewModels\IMCTest.ViewModels.csproj" />
+  </ItemGroup>
+
+
+</Project>
