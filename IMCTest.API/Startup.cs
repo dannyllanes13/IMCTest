@@ -35,6 +35,7 @@ namespace IMCTest.API
             services.AddAutoMapper(typeof(MapProfile));
 
             services.AddTransient<TaxCalculatorClientA>();
+            services.AddTransient<TaxCalculatorClientB>();
 
 
             services.AddTransient<ServiceResolver>(serviceProvider => key =>
@@ -48,8 +49,7 @@ namespace IMCTest.API
                     case "ImplementationA":
                         return serviceProvider.GetService<TaxCalculatorClientA>();
                     case "ImplementationB":
-                        //intance for other implementation
-                        throw new NotImplementedException();
+                        return serviceProvider.GetService<TaxCalculatorClientB>();
                     default:
                         throw new KeyNotFoundException();
                 }

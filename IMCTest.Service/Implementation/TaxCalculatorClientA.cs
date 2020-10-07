@@ -72,7 +72,7 @@ namespace IMCTest.Service.Implementation
                     throw new InvalidOperationException("ZipCode data is not a valid US ZipCode");
                 }
 
-                if (order.ToCountry.ToLower() == "us" || order.ToCountry.ToLower() == "ca" && string.IsNullOrEmpty(order.ToState))
+                if ((order.ToCountry.ToLower() == "us" || order.ToCountry.ToLower() == "ca") && string.IsNullOrEmpty(order.ToState))
                 {
                     throw new InvalidOperationException("Destination state is required whe Destination country is US or CA");
                 }
